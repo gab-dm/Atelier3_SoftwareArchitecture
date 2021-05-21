@@ -2,7 +2,7 @@ package com.room.service;
 
 import java.util.List;
 
-public class RoomService {
+public class RoomService<CardDTO> {
 
 
 public  RoomService() {}
