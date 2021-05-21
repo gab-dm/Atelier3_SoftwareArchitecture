@@ -85,6 +85,17 @@ public class MarketService {
 		UserDto user = new RestTemplate().getForObject(UrlGetUserBySession,UserDto.class);
 		return user;
 	}
+
+	public CardDto getCardById(Integer cardId) {
+		String UrlGetcardById = "";
+		CardDto card = new RestTemplate().getForObject(UrlGetcardById,CardDto.class);
+		return card;
+	}
+	
+	public void PostCardInDeck(CardDto _card, UserDto _user) {
+		String UrlPostCardInDeck = "";
+		new RestTemplate().postForObject(UrlPostCardInDeck, _card, null);
+	}
 	
 	
 }

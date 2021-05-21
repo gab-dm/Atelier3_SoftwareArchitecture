@@ -13,23 +13,8 @@ import javax.persistence.ManyToMany;
 
 public class UserDto {
 	
-	@Id
-	@GeneratedValue
-	
 	private Integer id;
-	private String name;
-	private String pswd;
-	private float solde=500;
-	@ManyToMany
-	@JoinTable(
-			  name = "card_user", 
-			  joinColumns = @JoinColumn(name = "user_id"), 
-			  inverseJoinColumns = @JoinColumn(name = "card_id")
-			  )
-	
-	
-	
-	
+	private float solde;
 	private List<CardDto> CardList;
 	
 		public UserDto() {
@@ -37,13 +22,13 @@ public class UserDto {
 		}
 		
 		
-		public UserDto ( String _name , String _pswd ) {
+		public UserDto (Integer _id , float _solde, List<CardDto> _cardList) {
 			
 			super();
-			this.name = _name;
-			this.pswd = _pswd;
+			this.id = _id;
+			this.solde = _solde;
 			
-			this.solde = 500;
+			this.CardList = _cardList;
 			
 		}
 	
@@ -55,17 +40,11 @@ public class UserDto {
 			this.id = id;
 		}
 	
-		public String getName() {
-			return name;
-		}
-	
-		public void setName(String name) {
-			this.name = name;
 		
-		}
+		
 		@Override
 		public String toString() {
-			return "id :"+ this.id+ "name: "+this.name + " Mot de passe: " + this.pswd + " Solde : " + this.solde + " deck : "+ this.CardList;
+			return "id :"+ this.id+ " Solde : " + this.solde + " deck : "+ this.CardList;
 		}
 	
 		public List<CardDto> getCardList() {
@@ -76,13 +55,7 @@ public class UserDto {
 			CardList = cardList;
 		}
 	
-		public String getPswd() {
-			return pswd;
-		}
-	
-		public void setPswd(String pswd) {
-			this.pswd = pswd;
-		}
+		
 	
 		public float getSolde() {
 			return solde;
