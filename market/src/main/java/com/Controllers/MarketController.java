@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import DTOs.CardDto;
 import DTOs.UserDto;
+import Models.Market;
 import Repositories.MarketRepository;
 import Services.MarketService;
 
@@ -34,24 +35,19 @@ public class MarketController {
 	
 	
 	
-	/*
-	 * @RequestMapping(method=RequestMethod.POST,value="/buy") public String
-	 * BuyCard(Integer marketId, String token, Integer cardId, Integer sellerId,
-	 * HttpServletResponse response,HttpServletRequest request) {
-	 * 
-	 * UserDto buyer = sessionService.isLogged(token , request); UserDto seller =
-	 * uRepository.findById(sellerId) .orElseThrow(() -> new
-	 * RuntimeException("Pas d'utilisateur")); Card card =
-	 * cRepository.findById(cardId).orElseThrow(() -> new
-	 * RuntimeException("Pas de carte trouvée avec cet id")); Market market =
-	 * mRepository.findById(marketId).orElseThrow(() -> new
-	 * RuntimeException("Pas de market"));;
-	 * System.out.println("this market id is :"+market.getMarketId()); return
-	 * mService.buyACard(buyer, seller, card, market);
-	 * 
-	 * 
-	 * }
-	 */
+	
+	@RequestMapping(method=RequestMethod.POST,value="/buy") public String BuyCard(Integer marketId, String token, Integer cardId,HttpServletResponse response,HttpServletRequest request) {
+	  
+		UserDto buyer = mService.getUserBySession(token, request); 
+		
+		CardDto card = mService.getCardById(cardId);
+		Market market = mRepository.findById(marketId).orElseThrow(() -> new RuntimeException("Pas de market"));;
+		System.out.println("this market id is :"+market.getMarketId()); 
+		return mService.buyACard(buyer, card, market);
+		  
+	  
+	}
+	 
 	@RequestMapping(method=RequestMethod.POST,value="/sell")
 	public String SellCard(String token,  Integer cardId, HttpServletResponse response,HttpServletRequest request) {
 	    

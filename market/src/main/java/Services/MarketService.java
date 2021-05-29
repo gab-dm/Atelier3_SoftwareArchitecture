@@ -27,9 +27,11 @@ public class MarketService {
 		return MarketList;
 	}
 	
-	public String buyACard (UserDto buyer, UserDto seller, CardDto card, Market market) {
+	public String buyACard (UserDto buyer, CardDto card, Market market) {
 		
-		if (buyer.getSolde()<DTOs.CardDto.getPrice()) {
+		UserDto seller = this.getUserById(market.getUserId());
+		
+		if (buyer.getSolde()< CardDto.getPrice()) {
 					
 					
 			return "Pas assez d'argent";
@@ -37,12 +39,24 @@ public class MarketService {
 		}
 		else {
 			buyer.setSolde(buyer.getSolde()-CardDto.getPrice());
-			buyer.addCard(card);
-			uService.UpdateUser(buyer);
+			
+			//désuet avec la nouvelle methode
+			//buyer.addCard(card);
+			
+			this.PostUserSold(buyer);
+			
 			
 			seller.setSolde(seller.getSolde()+CardDto.getPrice());
-			seller.removeCard(card);
-			uService.UpdateUser(seller);
+			
+			//désuet avec la nouvelle methode
+			//seller.removeCard(card);
+			
+			this.PostUserSold(seller);
+			
+			//méthode pour changer l'ID de l'utilisateur a qui appartient la carte à récup quand Thomas/Lucas l'aura implémentée
+			//card.setUserID
+			
+			this.PostCard(card);
 			
 			mRepository.delete(market);
 			return "transaction effectuee";
@@ -51,11 +65,12 @@ public class MarketService {
 	}
 	
 	public String sellACard(UserDto seller, CardDto card) {
-		
+		//on suppose dans cette partie qu'un utilisateur n'a pas pu envoyer une requete de mise en vente sur une carte qu'il ne possède pas
+		 
 		List<Market> MarketList = this.getAllMarket();
 		boolean carteEnVente = false;
+		
 		for (Market market : MarketList) {
-			
 			
 			if ((market.getCardId() == card.getId()) && market.getUserId()==seller.getId() ) {
 				carteEnVente =true;
@@ -85,6 +100,11 @@ public class MarketService {
 		UserDto user = new RestTemplate().getForObject(UrlGetUserBySession,UserDto.class);
 		return user;
 	}
+	public UserDto getUserById(Integer UserId) {
+		String UrlGetUserById = "";
+		UserDto user = new RestTemplate().getForObject(UrlGetUserById,UserDto.class);
+		return user;
+	}
 
 	public CardDto getCardById(Integer cardId) {
 		String UrlGetcardById = "";
@@ -92,10 +112,14 @@ public class MarketService {
 		return card;
 	}
 	
-	public void PostCardInDeck(CardDto _card, UserDto _user) {
+	public void PostCard(CardDto _card) {
 		String UrlPostCardInDeck = "";
 		new RestTemplate().postForObject(UrlPostCardInDeck, _card, null);
 	}
 	
+	public void PostUserSold(UserDto _user) {
+		String UrlPostUserSold ="http://127.0.0.1:8082/SetUserSold";
+		new RestTemplate().postForObject(UrlPostUserSold, _user, null);
+	}
 	
 }
