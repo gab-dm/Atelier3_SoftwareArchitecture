@@ -12,7 +12,7 @@
 	<artifactId>Cards</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Cards</name>
-	<description>Cards service</description>
+	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
@@ -25,10 +25,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-    <dependency>
-        <groupId>com.fasterxml.jackson.dataformat</groupId>
-        <artifactId>jackson-dataformat-xml</artifactId>
-    </dependency>
+		<dependency>
+        	<groupId>com.fasterxml.jackson.dataformat</groupId>
+        	<artifactId>jackson-dataformat-xml</artifactId>
+    	</dependency>
 
 		<dependency>
 			<groupId>com.h2database</groupId>
