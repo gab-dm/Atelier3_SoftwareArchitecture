@@ -32,7 +32,7 @@ public class CardsRestControler {
     
     @RequestMapping(method=RequestMethod.POST,value="/cardlist")
     public List<Cards> generateCardList(){
-    	List<Cards> cardlist= cService.generateCardList();
+    	List<Cards> cardlist= cService.setCardList(generateCardList());
     	return cardlist;
     }
 
