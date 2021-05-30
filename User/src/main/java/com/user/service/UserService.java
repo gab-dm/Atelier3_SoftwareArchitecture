@@ -24,6 +24,9 @@ public class UserService {
     static final String URL_CARDLIST = "http://localhost:8081/cardlist";
 
 
+	
+
+
     @Autowired
     UserRepository uRepository;
 
@@ -42,11 +45,9 @@ public class UserService {
 
     public boolean addUser(User u) {
 
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<CardDto[]> response = restTemplate.getForEntity(URL_CARDLIST, CardDto[].class);
-        CardDto[] listCards = response.getBody();
+        
 
-        //Je ne sais pas si ça suffit de faire ça
+        
 
         //System.out.println(uRepository.findByName(u.getName()));
         if(!uRepository.findByName(u.getName()).isPresent()) {
@@ -157,8 +158,8 @@ public class UserService {
 
 
 	public void createDeck(User _user) {
-		String UrlPostUserSold ="http://127.0.0.1:8082/Cards/addDeck";
-		new RestTemplate().postForObject(UrlPostUserSold,_user.getId() , null);
+		String UrlPostUserSold ="http://127.0.0.1:8081/cards/addDeck";
+		new RestTemplate().postForObject(UrlPostUserSold,_user.getId(), int.class);
 		
 	}
 	

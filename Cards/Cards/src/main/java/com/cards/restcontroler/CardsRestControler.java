@@ -28,22 +28,26 @@ public class CardsRestControler {
     }
     
     @RequestMapping(method=RequestMethod.GET,value="/GetCard/{id}")
-    public Cards getACard(@PathVariable String id) {
-        Cards c = cService.getCard(Integer.valueOf(id));
-        return c;
-    }
-    
-    @RequestMapping(method=RequestMethod.GET,value="/card/GetCard")
     public Cards getCard(@PathVariable String id) {
         Cards c = cService.getCard(Integer.valueOf(id));
         return c;
     }
+    
+   
     
     @RequestMapping(method=RequestMethod.POST,value="/SetCardUserId")
     public void SetUserId(@PathVariable MarketCardDTO cardDTO){
     	Cards c = cService.getCard(cardDTO.getId());
     	c.setIdJoueur(cardDTO.getIdJoueur());
     	cService.Save(c);
+    	
+    }
+    
+    @RequestMapping(method=RequestMethod.POST,value="/addDeck")
+    public Integer CreateDeck(@PathVariable Integer _userId){
+    	
+    	cService.generateCardList(_userId);
+    	return 1;
     	
     }
 

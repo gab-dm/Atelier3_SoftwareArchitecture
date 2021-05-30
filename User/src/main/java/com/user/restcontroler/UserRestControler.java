@@ -62,8 +62,8 @@ public class UserRestControler {
 
     @RequestMapping(method=RequestMethod.POST,value="/register")
     public String addUser(@RequestBody User user, HttpServletResponse response,HttpServletRequest request) {
-        System.out.println(response );
-        System.out.println(request );
+        System.out.println("reponse : "+response );
+        System.out.println("request :"+request );
         if  ( !uService.addUser(user)) {
             logger.error("Impossible. Ce nom existe deja ");
             response.setStatus( HttpServletResponse.SC_BAD_REQUEST);
