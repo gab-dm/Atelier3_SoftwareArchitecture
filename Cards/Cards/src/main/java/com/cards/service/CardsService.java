@@ -34,6 +34,12 @@ public class CardsService {
 		}
 	}
 	
+	    public List<Card> setCardList(List<Card> cardList) {
+        	List<Card> CardList;
+        	CardList = cardList;
+        	return CardList;
+    }
+	
 	public List<Cards> generateCardList(){
 		Random random = new Random(System.currentTimeMillis()); //Pour avoir une seed "unique", on utilise la date
 		
