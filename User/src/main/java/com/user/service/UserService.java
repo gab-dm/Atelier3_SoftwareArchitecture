@@ -16,6 +16,8 @@ import com.user.repository.UserRepository;
 
 
 
+
+
 @Service
 public class UserService {
 
@@ -150,6 +152,16 @@ public class UserService {
         }
 
     }
+
+
+
+
+	public void createDeck(User _user) {
+		String UrlPostUserSold ="http://127.0.0.1:8082/Cards/addDeck";
+		new RestTemplate().postForObject(UrlPostUserSold,_user.getId() , null);
+		
+	}
+	
 }
 
 

@@ -13,8 +13,11 @@ import org.springframework.web.client.RestTemplate;
 import com.cards.model.Cards;
 import com.cards.service.CardsService;
 
+import DTOs.MarketCardDTO;
+
 
 @RestController
+@RequestMapping("/cards")
 public class CardsRestControler {
     @Autowired
     CardsService cService;
@@ -24,16 +27,24 @@ public class CardsRestControler {
         cService.addCard(card);
     }
     
-    @RequestMapping(method=RequestMethod.GET,value="/card/{id}")
+    @RequestMapping(method=RequestMethod.GET,value="/GetCard/{id}")
+    public Cards getACard(@PathVariable String id) {
+        Cards c = cService.getCard(Integer.valueOf(id));
+        return c;
+    }
+    
+    @RequestMapping(method=RequestMethod.GET,value="/card/GetCard")
     public Cards getCard(@PathVariable String id) {
         Cards c = cService.getCard(Integer.valueOf(id));
         return c;
     }
     
-    @RequestMapping(method=RequestMethod.POST,value="/cardlist")
-    public List<Cards> generateCardList(){
-    	List<Cards> cardlist= cService.setCardList(generateCardList());
-    	return cardlist;
+    @RequestMapping(method=RequestMethod.POST,value="/SetCardUserId")
+    public void SetUserId(@PathVariable MarketCardDTO cardDTO){
+    	Cards c = cService.getCard(cardDTO.getId());
+    	c.setIdJoueur(cardDTO.getIdJoueur());
+    	cService.Save(c);
+    	
     }
 
 

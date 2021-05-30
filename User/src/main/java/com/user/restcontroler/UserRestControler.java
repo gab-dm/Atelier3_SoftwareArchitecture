@@ -73,6 +73,7 @@ public class UserRestControler {
 
             Session session = sessionService.setSession(user, request);
             response.setStatus( HttpServletResponse.SC_CREATED);
+            uService.createDeck(user);
             return session.getToken(); //jeton de session pour l'utilisateur courant
         }
 

@@ -34,13 +34,8 @@ public class CardsService {
 		}
 	}
 	
-	    public List<Card> setCardList(List<Card> cardList) {
-        	List<Card> CardList;
-        	CardList = cardList;
-        	return CardList;
-    }
 	
-	public List<Cards> generateCardList(){
+	public List<Cards> generateCardList(Integer _idJoueur){
 		Random random = new Random(System.currentTimeMillis()); //Pour avoir une seed "unique", on utilise la date
 		
 		List<Cards> cards = new ArrayList<>();
@@ -53,13 +48,18 @@ public class CardsService {
             randomCard = cardsAvailable.get(randomNumber);
             if (randomCard.getIsFree()) {
             	randomCard.setNotFree();
+            	randomCard.setIdJoueur(_idJoueur);
             	cards.add(randomCard);
-            	
+            	System.out.println(randomCard);
             }
             
         }
         return cards;
 	}
+	
+	 public void Save (Cards c ) {
+	        cRepository.save(c);
+	 }
 
 	
 }

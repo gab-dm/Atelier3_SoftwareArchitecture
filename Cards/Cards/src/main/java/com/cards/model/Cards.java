@@ -8,8 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-import com.user.model.Card;
-import com.user.model.Cards;
+
 
 
 @Entity(name="Cards")
@@ -27,7 +26,7 @@ private String imgUrl;
 private Integer attack;
 private Integer defence;
 private boolean isFree = true;
-private List<Cards> CardList;
+
 
 
 @ManyToMany
@@ -40,7 +39,7 @@ private static Integer price;
     public Cards( Integer idJoueur,String name , Integer hp, String description, String imgUrl, Integer attack, Integer defence ) {
 		
 		super();
-	    	this.idJoueur = idJoueur;
+	    this.idJoueur = idJoueur;
 		this.name = name;
 		this.hp = hp;
 		this.description = description ;
@@ -50,14 +49,14 @@ private static Integer price;
 		
 		Cards.price = price;
 		
-		this.CardList=new ArrayList<Cards>();
+		
 		
 	}
 
-    public Cards( Integer idJoueur,String name , Integer hp, String description, String imgUrl, Integer attack, Integer defence ) {
+    public Cards(String name , Integer hp, String description, String imgUrl, Integer attack, Integer defence ) {
 		
 		super();
-	    	this.idJoueur = idJoueur;
+	    this.idJoueur = -1;
 		this.name = name;
 		this.hp = hp;
 		this.description = description ;
@@ -66,7 +65,7 @@ private static Integer price;
 		this.defence = defence;
 		
 		Cards.price = 500;
-		this.CardList=new ArrayList<Cards>();
+		
 		
 	}
 	public Integer getId() {
@@ -78,11 +77,11 @@ private static Integer price;
 	}
 	public Integer getIdJoueur() {
         	return idJoueur;
-    	}
+    }
 
-    	public void setIdJoueur(Integer idJoueur) {
-        	this.idJoueur = idJoueur;
-    	}
+	public void setIdJoueur(Integer idJoueur) {
+    	this.idJoueur = idJoueur;
+	}
 
 
 	public String getName() {
@@ -149,29 +148,9 @@ private static Integer price;
 	}
 	
 
-	public List<Cards> getCardList() {
-		return CardList;
-	}
-
-	public void setCardList(List<Cards> cardList) {
-		CardList = cardList;
-	}
-	
-	//public String buyCard(Card card, int price) {
-
-	public void addCard(Cards card) {
-		// TODO Auto-generated method stub
-		this.CardList.add(card);
-	}
-
-	public void removeCard(Cards card) {
-		// TODO Auto-generated method stub
-		this.CardList.remove(card);
-	}
-	
 	@Override
 	public String toString() {
-		return "Carte ["+getId()+"]: name:"+getName() +", hp:"+getHp()+", imgUrl:"+getImgUrl() + ", attack:"+getAttack() + ", defence:" +getDefence();
+		return "Carte ["+getId()+"]: name:"+getName() +" id Joueur : "+this.getIdJoueur()+", hp:"+getHp()+", imgUrl:"+getImgUrl() + ", attack:"+getAttack() + ", defence:" +getDefence();
 	}
 	
 

@@ -54,7 +54,7 @@ public class MarketService {
 			this.PostUserSold(seller);
 			
 			//méthode pour changer l'ID de l'utilisateur a qui appartient la carte à récup quand Thomas/Lucas l'aura implémentée
-			//card.setUserID
+			card.setIdJoueur(buyer.getId());
 			
 			this.PostCard(card);
 			
@@ -107,18 +107,18 @@ public class MarketService {
 	}
 
 	public CardDto getCardById(Integer cardId) {
-		String UrlGetcardById = "";
+		String UrlGetcardById = "http://127.0.0.1:8081/cards/GetCard/{"+cardId.toString()+"}";
 		CardDto card = new RestTemplate().getForObject(UrlGetcardById,CardDto.class);
 		return card;
 	}
 	
 	public void PostCard(CardDto _card) {
-		String UrlPostCardInDeck = "";
+		String UrlPostCardInDeck = "http://127.0.0.1:8081/cards/SetCardUserId";
 		new RestTemplate().postForObject(UrlPostCardInDeck, _card, null);
 	}
 	
 	public void PostUserSold(UserDto _user) {
-		String UrlPostUserSold ="http://127.0.0.1:8082/SetUserSold";
+		String UrlPostUserSold ="http://127.0.0.1:8082/user/SetUserSold";
 		new RestTemplate().postForObject(UrlPostUserSold, _user, null);
 	}
 	
