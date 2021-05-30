@@ -19,6 +19,7 @@ public final class Cards {
 @Id
 @GeneratedValue
 private Integer id;
+private Integer idJoueur;
 private String name;
 private Integer hp;
 private String description;
@@ -36,9 +37,10 @@ private static Integer price;
 	public Cards() {}
 
 
-	public Cards( String name , Integer hp, String description, String imgUrl, Integer attack, Integer defence, Integer price ) {
+    public Cards( Integer idJoueur,String name , Integer hp, String description, String imgUrl, Integer attack, Integer defence ) {
 		
 		super();
+	    	this.idJoueur = idJoueur;
 		this.name = name;
 		this.hp = hp;
 		this.description = description ;
@@ -52,9 +54,10 @@ private static Integer price;
 		
 	}
 
-public Cards( String name , Integer hp, String description, String imgUrl, Integer attack, Integer defence ) {
+    public Cards( Integer idJoueur,String name , Integer hp, String description, String imgUrl, Integer attack, Integer defence ) {
 		
 		super();
+	    	this.idJoueur = idJoueur;
 		this.name = name;
 		this.hp = hp;
 		this.description = description ;
@@ -73,6 +76,14 @@ public Cards( String name , Integer hp, String description, String imgUrl, Integ
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	public Integer getIdJoueur() {
+        	return idJoueur;
+    	}
+
+    	public void setIdJoueur(Integer idJoueur) {
+        	this.idJoueur = idJoueur;
+    	}
+
 
 	public String getName() {
 		return name;
