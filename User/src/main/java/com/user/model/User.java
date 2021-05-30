@@ -25,12 +25,7 @@ public final class User {
     private String pswd;
     private float solde=500;
 
-    @ManyToMany
-    @JoinTable(
-            name = "card_user",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "card_id")
-    )
+   
 
 
     public User ( String _name , String _pswd ) {

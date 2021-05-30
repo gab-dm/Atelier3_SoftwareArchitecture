@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.DTO.MarketUserDTO;
+import com.user.model.Session;
 import com.user.model.User;
 import com.user.restcontroler.UserRestControler;
+import com.user.service.SessionService;
 import com.user.service.UserService;
 
 
@@ -106,6 +109,15 @@ public class UserRestControler {
 
 
     }
+    
+       //post du market pour changer le solde
+    @RequestMapping(method=RequestMethod.POST,value="/SetUserSold")
+    public void getUser(@RequestBody MarketUserDTO userDTO) {
+        User u = uService.getUserById(userDTO.getId());
+        u.setSolde(userDTO.getSolde());
+        uService.UpdateUser(u);
+        System.out.println("Utilisateur updaté : solde passé à "+u.getSolde());
+    }
 
     /**
      * GET
@@ -176,6 +188,8 @@ public class UserRestControler {
         }
 
     }
+    
+    
 
 
 
