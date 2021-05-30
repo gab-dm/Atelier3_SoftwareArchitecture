@@ -1,5 +1,5 @@
 package com.room.restcontroler;
 
-public class RoomControler {
+public class RoomRestCrt {
 
 }
