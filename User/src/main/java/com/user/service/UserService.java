@@ -158,8 +158,8 @@ public class UserService {
 
 
 	public void createDeck(User _user) {
-		String UrlPostUserSold ="http://127.0.0.1:8081/cards/addDeck";
-		new RestTemplate().postForObject(UrlPostUserSold,_user.getId(), int.class);
+		String UrlPostUserSold ="http://127.0.0.1:8081/cards/addDeck/"+_user.getId();
+		new RestTemplate().postForObject(UrlPostUserSold, null, Object.class);
 		
 	}
 	

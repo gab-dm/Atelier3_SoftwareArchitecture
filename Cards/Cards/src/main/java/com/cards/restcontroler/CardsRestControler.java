@@ -43,11 +43,11 @@ public class CardsRestControler {
     	
     }
     
-    @RequestMapping(method=RequestMethod.POST,value="/addDeck")
-    public Integer CreateDeck(@PathVariable Integer _userId){
+    @RequestMapping(method=RequestMethod.POST,value="/addDeck/{userId}")
+    public void CreateDeck(@PathVariable Integer userId){
     	
-    	cService.generateCardList(_userId);
-    	return 1;
+    	cService.generateCardList(userId);
+    	return ;
     	
     }
 
