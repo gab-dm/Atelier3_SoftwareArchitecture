@@ -1,6 +1,7 @@
 package com.market.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -93,6 +94,16 @@ public class MarketService {
 		}
 		
 	}
+	
+	public Market getMarketById(int id) {
+        Optional<Market> uOpt =mRepository.findById(id);
+        if (uOpt.isPresent()) {
+            return uOpt.get();
+        }else {
+            return null;
+        }
+    }
+	
 	public void addMarket(Market m) {
 		Market createdMarket=mRepository.save(m);
 		System.out.println(createdMarket.toString());

@@ -59,7 +59,7 @@ public class UserRestControler {
      * @param response
      */
 
-
+//inscritption d'un nouvel utilisateur : on lui ajoute des cartes et transmet un jeton de session
     @RequestMapping(method=RequestMethod.POST,value="/register")
     public String addUser(@RequestBody User user, HttpServletResponse response,HttpServletRequest request) {
         System.out.println("reponse : "+response );

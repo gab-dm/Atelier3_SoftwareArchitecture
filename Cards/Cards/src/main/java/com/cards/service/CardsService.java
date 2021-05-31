@@ -34,7 +34,7 @@ public class CardsService {
 		}
 	}
 	
-	
+	//pour ajouter des cartes à un utilisateur, on a chagé notre méthode et maintenant on ajoute un utilisateur à nos cartes
 	public List<Cards> generateCardList(Integer _idJoueur){
 		Random random = new Random(System.currentTimeMillis()); //Pour avoir une seed "unique", on utilise la date
 		
@@ -44,9 +44,11 @@ public class CardsService {
         Cards randomCard;
         while(cards.size()<3){
         	
+        	
+        	//
         	int randomNumber =random.nextInt(nbCardsAvailable);
             randomCard = cardsAvailable.get(randomNumber);
-            if (randomCard.getIsFree()) {
+            if (randomCard.getIsFree()) { // les cartes qui n'ont pas encore d'utilisateur on un tag spécial
             	randomCard.setNotFree();
             	randomCard.setIdJoueur(_idJoueur);
             	

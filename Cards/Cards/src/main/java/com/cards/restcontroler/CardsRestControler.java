@@ -35,7 +35,7 @@ public class CardsRestControler {
     }
     
    
-    
+    //change le possesseur d'une carte lors de l'achat
     @RequestMapping(method=RequestMethod.POST,value="/SetCardUserId")
     public void SetUserId(@RequestBody MarketCardDTO cardDTO){
     	Cards c = cService.getCard(cardDTO.getId());
@@ -44,7 +44,7 @@ public class CardsRestControler {
     	cService.Save(c);
     	
     }
-    
+    //appelle la méthode pour ajouter des cartes à un utilisateur lorsqu'un nouvel utilisateur est crée
     @RequestMapping(method=RequestMethod.POST,value="/addDeck/{userId}")
     public void CreateDeck(@PathVariable Integer userId){
     	

@@ -45,7 +45,7 @@ public class MarketControler {
     }
 	
 	
-	
+	// lorsque l'utilisateur courant veut acheter une carte
 	@RequestMapping(method=RequestMethod.POST,value="/buy") 
 	public String BuyCard(Integer marketId, String token, Integer cardId,HttpServletResponse response,HttpServletRequest request) {
 	  
@@ -58,7 +58,7 @@ public class MarketControler {
 		  
 	  
 	}
-	 
+	//lorque l'utilisateur courant veut vendre une de ses cartes
 	@RequestMapping(method=RequestMethod.POST,value="/sell")
 	public String SellCard(String token, Integer cardId, HttpServletResponse response,HttpServletRequest request) {
 	    
@@ -75,5 +75,10 @@ public class MarketControler {
 	 	return mService.sellACard(seller, card);
 		
 	 	
+    }
+	
+	public Market getMarketById(@PathVariable("id") int idMarket) {
+		Market market = mService.getMarketById(idMarket);
+        return market;
     }
 }
