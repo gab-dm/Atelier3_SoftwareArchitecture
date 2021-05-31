@@ -27,11 +27,7 @@ private Integer attack;
 private Integer defence;
 private boolean isFree = true;
 
-
-
-@ManyToMany
-
-private static Integer price;
+private Integer price =100;
 	
 	public Cards() {}
 
@@ -47,7 +43,7 @@ private static Integer price;
 		this.attack = attack;
 		this.defence = defence;
 		
-		Cards.price = price;
+		
 		
 		
 		
@@ -64,7 +60,7 @@ private static Integer price;
 		this.attack = attack;
 		this.defence = defence;
 		
-		Cards.price = 500;
+		this.price = 100;
 		
 		
 	}
@@ -134,11 +130,11 @@ private static Integer price;
 	
 	
 	public void setPrice(Integer price) {
-		Cards.price = price;
+		this.price = price;
 	}
 	
-	public static Integer getPrice() {
-		return price;
+	public Integer getPrice() {
+		return this.price;
 	}
 	public boolean getIsFree() {
 		return this.isFree;

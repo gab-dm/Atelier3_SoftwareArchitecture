@@ -16,7 +16,7 @@ public final class CardDto {
 private Integer id;
 private String name;
 private Integer idJoueur;
-private static Integer price;
+private Integer price;
 	
 	
 	
@@ -42,7 +42,7 @@ private static Integer price;
 		this.price = price;
 	}
 	
-	public static Integer getPrice() {
+	public Integer getPrice() {
 		return price;
 	}
 	

@@ -85,7 +85,7 @@ public class UserRestControler {
      * @return
      */
     @RequestMapping(method=RequestMethod.POST,value="/login")
-    public void getUser(@RequestBody User user, HttpServletResponse response,HttpServletRequest request) {
+    public String getUser(@RequestBody User user, HttpServletResponse response,HttpServletRequest request) {
         User u = uService.getUserByName(user.getName());
 
         if ((u != null) && (u.getPswd().equals(user.getPswd()))) {
@@ -98,13 +98,13 @@ public class UserRestControler {
             response.setStatus( HttpServletResponse.SC_OK);
             response.addCookie(token); //on ajoute le cookie à la réponse
 
-            return;
+            return "Connexion effectuée, token : "+session.getToken();
 
         }
         else {
             logger.error("Mauvais nom ou mot de passe ");
             response.setStatus( HttpServletResponse.SC_BAD_REQUEST);
-            return;
+            return "error";
 
         }
 

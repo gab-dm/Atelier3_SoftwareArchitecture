@@ -1,80 +1,91 @@
 package com.room.model;
 
+import org.springframework.data.annotation.Id;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+
 @Entity(name="Room")
 
 public class Room {
-	
-	@Id
-	@GeneratedValue
+
+    @Id
+    @GeneratedValue
     private Integer id;
-	private String name;
-	private String owner;
-	private int bet;
-	private String challenger;
-	private String cardOwner;
-	private String cardChallenger;
+    private String name;
+    private String owner;
+    private int bet;
+    private String challenger;
+    private String cardOwner;
+    private String cardChallenger;
 
-	public Room() {
-	}
-	
-	public Room( String name,String owner, int bet) {
-		this.name = name;
-		this.setOwner(owner);
-		this.setBet(bet);
-	}
+    public Room() {
+    }
 
-	public String getName() {
-		return name;
-	}
+    public Room( String name,String owner, int bet) {
+        this.name = name;
+        this.setOwner(owner);
+        this.setBet(bet);
+    }
 
-	public void setName(String name) {
-		this.name = name;	
-	}
+    public int getBet() {
+        return bet;
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    private void setBet(int bet) { this.bet = bet; }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getOwner() {
-		return owner;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setOwner(String owner) {
-		this.owner = owner;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public String getChallenger() {
-		return challenger;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setChallenger(String challenger) {
-		this.challenger = challenger;
-	}
-	
-	
-	public String getCardOwner() {
-		return cardOwner;
-	}
+    public String getOwner() {
+        return owner;
+    }
 
-	public void setCardOwner(String cardOwner) {
-		this.cardOwner = cardOwner;
-	}
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
 
-	public String getCardChallenger() {
-		return cardChallenger;
-	}
+    public String getChallenger() {
+        return challenger;
+    }
 
-	public void setCardChallenger(String cardChallenger) {
-		this.cardChallenger = cardChallenger;
-	}
-	
-	@Override
-	public String toString() {
-		return "Room ["+this.id+"]: :"+this.name+", bet:"+this.bet+", owner:"+this.owner+", challenger:"+this.challenger +", owner's card:"+ this.cardOwner +", challenger's card:"+ this.cardChallenger;
-	}
+    public void setChallenger(String challenger) {
+        this.challenger = challenger;
+    }
+
+
+    public String getCardOwner() {
+        return cardOwner;
+    }
+
+    public void setCardOwner(String cardOwner) {
+        this.cardOwner = cardOwner;
+    }
+
+    public String getCardChallenger() {
+        return cardChallenger;
+    }
+
+    public void setCardChallenger(String cardChallenger) {
+        this.cardChallenger = cardChallenger;
+    }
+
+    @Override
+    public String toString() {
+        return "Room ["+this.id+"]: :"+this.name+", bet:"+this.bet+", owner:"+this.owner+", challenger:"+this.challenger +", owner's card:"+ this.cardOwner +", challenger's card:"+ this.cardChallenger;
+    }
 
 }

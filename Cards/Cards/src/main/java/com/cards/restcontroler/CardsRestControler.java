@@ -37,9 +37,10 @@ public class CardsRestControler {
    
     
     @RequestMapping(method=RequestMethod.POST,value="/SetCardUserId")
-    public void SetUserId(@PathVariable MarketCardDTO cardDTO){
+    public void SetUserId(@RequestBody MarketCardDTO cardDTO){
     	Cards c = cService.getCard(cardDTO.getId());
     	c.setIdJoueur(cardDTO.getIdJoueur());
+    	System.out.println("Nouvelle version de la carte :"+c );
     	cService.Save(c);
     	
     }

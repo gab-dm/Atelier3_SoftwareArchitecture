@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.origin.SystemEnvironmentOrigin;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -31,15 +32,16 @@ public class MarketService {
 	public String buyACard (UserDto buyer, CardDto card, Market market) {
 		
 		UserDto seller = this.getUserById(market.getUserId());
-		
-		if (buyer.getSolde()< CardDto.getPrice()) {
+		System.out.println("buyer :"+buyer);
+		System.out.println("card :"+card);
+		if (buyer.getSolde()< card.getPrice()) {
 					
 					
 			return "Pas assez d'argent";
 		
 		}
 		else {
-			buyer.setSolde(buyer.getSolde()-CardDto.getPrice());
+			buyer.setSolde(buyer.getSolde()-card.getPrice());
 			
 			//désuet avec la nouvelle methode
 			//buyer.addCard(card);
@@ -47,7 +49,7 @@ public class MarketService {
 			this.PostUserSold(buyer);
 			
 			
-			seller.setSolde(seller.getSolde()+CardDto.getPrice());
+			seller.setSolde(seller.getSolde()+card.getPrice());
 			
 			//désuet avec la nouvelle methode
 			//seller.removeCard(card);

@@ -52,7 +52,8 @@ public class CardsService {
             	
             	cards.add(randomCard);
             	this.Save(randomCard);
-            	System.out.println(randomCard);
+            	
+            	System.out.println("carte ajoutée au joueur id : "+_idJoueur+" carte : "+randomCard);
             }
             
         }
