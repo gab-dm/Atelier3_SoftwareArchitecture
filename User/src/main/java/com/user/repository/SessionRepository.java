@@ -11,5 +11,6 @@ public interface SessionRepository extends CrudRepository<Session, Integer> {
 
 	public  Optional<Session> findByTokenAndIp(String Token, String Ip);
 	public  Optional<Session> findByIdUser(Integer id);
+	public Optional<Session> findByToken(String token);
 
 }

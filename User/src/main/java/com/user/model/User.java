@@ -25,7 +25,7 @@ public final class User {
     private String pswd;
     private float solde=500;
 
-   
+   public User() {};
 
 
     public User ( String _name , String _pswd ) {

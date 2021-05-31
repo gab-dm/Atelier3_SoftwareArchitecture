@@ -113,7 +113,7 @@ public class UserRestControler {
     
        //post du market pour changer le solde
     @RequestMapping(method=RequestMethod.POST,value="/SetUserSold")
-    public void getUser(@RequestBody MarketUserDTO userDTO) {
+    public void setUserSold(@RequestBody MarketUserDTO userDTO) {
         User u = uService.getUserById(userDTO.getId());
         u.setSolde(userDTO.getSolde());
         uService.UpdateUser(u);
@@ -126,7 +126,7 @@ public class UserRestControler {
      * @param idUser
      * @return USer
      */
-    @RequestMapping(method=RequestMethod.GET,value="/user/{id}")
+    @RequestMapping(method=RequestMethod.GET,value="/getUserId/{id}")
 
     public User getUserById(@PathVariable("id") int idUser) {
         User user = uService.getUserById(idUser);
@@ -141,8 +141,17 @@ public class UserRestControler {
      */
     @RequestMapping(method=RequestMethod.GET,value="/user/{name}")
 
-    public User getUserById(@PathVariable("name") String nameUser) {
+    public User getUserByName(@PathVariable("name") String nameUser) {
         User user = uService.getUserByName(nameUser);
+        return user;
+    }
+    @RequestMapping(method=RequestMethod.GET,value="/getUserByToken/{token}")
+
+    public User getUserByToken(@PathVariable("token") String token) {
+        
+    	System.out.println(token);
+    	Session session = sessionService.getSessionByToken(token);
+    	User user = uService.getUserById(session.getIdUser());
         return user;
     }
     /**

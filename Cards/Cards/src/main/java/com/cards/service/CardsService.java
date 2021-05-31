@@ -42,14 +42,16 @@ public class CardsService {
 		List<Cards> cardsAvailable = cRepository.findAll();
         int nbCardsAvailable = cardsAvailable.size();
         Cards randomCard;
-        while(cards.size()<5){
+        while(cards.size()<3){
         	
         	int randomNumber =random.nextInt(nbCardsAvailable);
             randomCard = cardsAvailable.get(randomNumber);
             if (randomCard.getIsFree()) {
             	randomCard.setNotFree();
             	randomCard.setIdJoueur(_idJoueur);
+            	
             	cards.add(randomCard);
+            	this.Save(randomCard);
             	System.out.println(randomCard);
             }
             

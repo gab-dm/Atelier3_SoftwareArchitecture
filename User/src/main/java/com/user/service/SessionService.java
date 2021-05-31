@@ -73,5 +73,15 @@ public class SessionService {
         sRepository.save(session);
         return session;
     }
+
+	public Session getSessionByToken(String token) {
+        Optional<Session> sOpt =sRepository.findByToken(token);
+        if (sOpt.isPresent()) {
+            return sOpt.get();
+        }else {
+            return null;
+        }
+    
+	}
 }
 
